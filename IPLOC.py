@@ -1,4 +1,4 @@
-import requests, subprocess
+import requests
 
 def IPAndLoc():
     locationAPI = "https://api.iplocation.net/?ip="
