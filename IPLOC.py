@@ -2,10 +2,10 @@ import requests
 
 def IPAndLoc():
     locationAPI = "https://api.iplocation.net/?ip="
-    IPurl = "https://whatismyipaddress.com/"
+    IPurl = "https://api.ipify.org/"
     IPRes = requests.get(IPurl)
     IP = str(IPRes.content)
-    IP = IP[IP.find("Your IP address: ") + 17:IP.find("</li>",IP.find("Your IP address: "))]
+    IP = IP[IP.find("b'") + 2:-1]
     LocRes = str(requests.get(locationAPI + IP).content)
     start = LocRes.find("{}country_name{}:{}".format(chr(34),chr(34),chr(34))) + 16
     end = int(LocRes.find(",",start))
@@ -13,3 +13,4 @@ def IPAndLoc():
     iploc = IP + " , " + COUNTRY
     return iploc
 print(IPAndLoc())
+
